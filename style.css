@@ -26,7 +26,6 @@ body{
     flex-direction: column;
     min-width: 43rem;
 
-    max-width: 43rem;
 
     margin: 0 auto;
 
@@ -75,6 +74,9 @@ form input{
 
     border-radius: .4rem;
 
+    color: var(--color-white);
+    font-size: 1.6rem;;
+
 }
 
 form input::placeholder{
@@ -90,6 +92,15 @@ form input::placeholder{
 }
 .ilustration{
     display: flex;
+}
+
+.ilustration img{
+    width: 100%;
+    max-height: 40.5rem;
+}
+
+.ilustration img:hover{
+    filter: brightness(1.5);
 }
 
 h1{
@@ -110,13 +121,19 @@ h1{
     align-items: center;
 }
 
-.actions button{
+button{
     display: flex;
     background-color: var(--brand-colors-explorer-dark);
     border-radius: 50%;
     padding: 1.2rem;
     border: none;
     align-content: center;
+
+}
+
+
+button:hover>img{
+    transform: scale(1.5) rotate(0.5turn);
 }
 
 .article p{
@@ -141,6 +158,19 @@ h1{
     gap: 1.6rem;
 
     align-items: center;
+}
+
+.card img{
+    width: 15.1rem;
+    height: 8.4rem;
+
+    transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.card img:hover{
+    transform: scale(1.1);
+    filter: hue-rotate(7deg) contrast(101%) saturate(200%);
+
 }
 
 .related-content {
@@ -174,8 +204,6 @@ footer{
     padding: 1.6rem;
 
     justify-content: center;
-
-
 }
 
 footer p{
@@ -185,24 +213,125 @@ footer p{
     font-weight: 600;
 }
 
-/*
-@media (min-width: 770px){
+
+@media (min-width: 803px){
 #app{
     display: grid;
 
-    grid-template-areas: "A A A"
-    "B B C"
-    "D D D";
+    grid-template-areas: 
+    "header header"
+    "main aside"
+    "footer footer";
 
+    width: 100vw;
+    height: 100vh;
+
+    grid-template-rows: max-content 1fr max-content;
+
+    grid-template-columns: .56fr 0.44fr;
     
-
-    height: 100vh;    
 }
 
 header{
-    grid-area: A;
-    display: flex;
-    background-color: var(--explorer-dark);
+    grid-area: header;
+    padding: 1.2rem 11.2rem;
 }
 
-}*/
+    
+main{     
+    grid-area: main;
+       
+    overflow-y: scroll;  
+}
+
+.article {
+       
+    margin: 3.2rem 0 0 11.2rem;
+        
+    line-height: 160%; 
+    color: var(--platform-aliases-background);
+    
+}
+
+
+.tittle-with-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 3.2rem 0;
+
+}
+
+.article p{
+    margin: 0;
+}
+
+.article h1{
+    margin: 0;
+}
+
+aside{
+    grid-area: aside;
+}
+
+.related-articles{
+    margin-top: 0;
+}
+
+footer{
+
+    margin-top: 3.9rem;
+    grid-area: footer;
+}
+
+}
+
+header{
+    --startY: -100%;
+    animation: moveY 1s;
+    animation-direction: reverse;
+}
+
+footer {
+    --startY: 100%;
+    animation: moveY 1s;
+    animation-direction: reverse;
+}
+
+
+@keyframes moveY{
+    100%{
+        transform: translateY(var(--startY));
+    }
+}
+
+
+.card{
+    --startX: 100%;
+    --delay: .3s;
+    animation: moveX 1s;
+    animation-direction: reverse;
+
+    animation-delay: var(--delay);
+
+}
+@keyframes moveX{
+        100%{
+            transform: translateX(var(--startX));
+        }
+}
+
+.related-articles h1{
+    animation: apear 3s;
+
+}
+
+@keyframes apear{
+    0%{
+        opacity: 0;
+    }
+    100%{ 
+        opacity: 1;
+    }
+}
